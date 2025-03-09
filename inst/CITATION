@@ -1,0 +1,32 @@
+utils::bibentry(
+  header = "To cite {plotr} in publications use:",
+  bibtype = "Misc",
+  title = paste0(
+    "{plotr}:", " ",
+    "Make working with plots in R a little bit easier"
+  ),
+  author = c(
+    person(
+      given = "Daniel",
+      family = "Vartanian",
+      role = c("aut", "cre", "ccp", "cph"),
+      email = "danvartan@gmail.com",
+      comment = c(ORCID = "0000-0001-7782-759X")
+    )
+  ),
+  year = "2025",
+  url = paste0(
+    "https://danielvartan.github.io/",
+    "plotr"
+  ),
+  note = "R package",
+  textVersion = paste0(
+    "Vartanian, D.", ". ",
+    "(2025)", ". ",
+    "{plotr}:", " ",
+    "Make working with plots in R a little bit easier", ". ",
+    "R package", ". ",
+    "https://danielvartan.github.io/",
+    "plotr"
+  )
+)

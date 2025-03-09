@@ -1,0 +1,59 @@
+# (2025-03-02) You may have to install the development version of `bslib` to
+# use `_brands.yml` (`remotes::install_github("rstudio/bslib", force = TRUE)`).
+
+url: https://danielvartan.github.io/plotr/
+
+template:
+  bslib:
+    version: 5
+  math-rendering: mathjax
+  light-switch: true
+  params:
+    noindex: false
+
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - news
+    right:
+    - search
+    - lightswitch
+    - github
+  components:
+    home: ~
+    intro: ~
+    articles: ~
+
+reference:
+# - title: Univariate
+#   contents:
+#   - hist
+#   - qq
+
+# - title: Bivariate
+#   contents:
+#   - ggally
+
+# - title: Geographical
+#   contents:
+#   - plot_brazil
+
+- title: Labels
+  contents:
+  - skip_label
+
+# - title: Utilities
+#   contents:
+#   - get_brazil_uf
+
+authors:
+  Daniel Vartanian:
+    href: https://github.com/danielvartan/
+
+development:
+  mode: auto
+  version_label: warning
