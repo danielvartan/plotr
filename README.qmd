@@ -45,9 +45,9 @@ remotes::install_github("danielvartan/plotr")
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit/)
+MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit)
 
-`plotr` code is released under the [MIT license](https://opensource.org/license/mit/).
+`plotr` code is released under the [MIT license](https://opensource.org/license/mit).
 
 ## Contributing
 

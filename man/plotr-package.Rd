@@ -4,9 +4,9 @@
 \name{plotr-package}
 \alias{plotr}
 \alias{plotr-package}
-\title{plotr: Make Dealing with Plots a Little Bit Easier}
+\title{plotr: Plots Made Easy}
 \description{
-Complicated plot functions ready to use with a single line of code.
+A set of tools designed to provide quick and easy access to commonly used plotting functions in data analysis.
 }
 \seealso{
 Useful links:

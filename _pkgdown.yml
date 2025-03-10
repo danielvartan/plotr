@@ -31,24 +31,54 @@ navbar:
 reference:
 # - title: Univariate
 #   contents:
-#   - hist
-#   - qq
+#   - plot_age_pyramid
+#   - plot_box_plot
+#   - plot_hist
+#   - plot_qq
 
 # - title: Bivariate
 #   contents:
 #   - ggally
 
+# - title: Multivariate
+#   contents:
+#   - plot_ggally
+#   - plot_ggcorrplot
+
 # - title: Geographical
 #   contents:
-#   - plot_brazil
+#   - plot_brazil_municipality
+#   - plot_brazil_point
+#   - plot_brazil_state
+#   - plot_latitude_series
+#   - plot_world_countries
+
+# - title: Geographical Utilities
+#   contents:
+#   - filter_points_on_land
+#   - get_brazil_uf
+#   - get_map_fill_data
+#   - rm_ggspatial_scale
 
 - title: Labels
   contents:
+# - fix_label_decimals
+# - format_as_hm
   - skip_label
+
+# - title: MCTQ
+#   contents:
+#   - categorize_msf_sc
+#   - color_mctq_rainbow_sequential
+#   - get_msf_sc_cutoffs
+#   - plot_chronotype
+#   - plot_series
+#   - scale_mctq_rainbow
 
 # - title: Utilities
 #   contents:
-#   - get_brazil_uf
+#   - gg_color_hue
+#   - transform_posixt_cut_levels
 
 authors:
   Daniel Vartanian:

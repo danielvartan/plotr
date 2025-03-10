@@ -128,6 +128,82 @@ references:
   doi: 10.32614/CRAN.package.dplyr
   version: '>= 1.1.4'
 - type: software
+  title: forcats
+  abstract: 'forcats: Tools for Working with Categorical Variables (Factors)'
+  notes: Imports
+  url: https://forcats.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=forcats
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.forcats
+  version: '>= 1.0.0'
+- type: software
+  title: geobr
+  abstract: 'geobr: Download Official Spatial Data Sets of Brazil'
+  notes: Imports
+  url: https://ipeagit.github.io/geobr/
+  repository: https://CRAN.R-project.org/package=geobr
+  authors:
+  - family-names: Pereira
+    given-names: Rafael H. M.
+    email: rafa.pereira.br@gmail.com
+    orcid: https://orcid.org/0000-0003-2125-7465
+  - family-names: Goncalves
+    given-names: Caio Nogueira
+  year: '2025'
+  doi: 10.32614/CRAN.package.geobr
+  version: '>= 1.9.1'
+- type: software
+  title: ggcorrplot
+  abstract: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
+  notes: Imports
+  url: http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2
+  repository: https://CRAN.R-project.org/package=ggcorrplot
+  authors:
+  - family-names: Kassambara
+    given-names: Alboukadel
+    email: alboukadel.kassambara@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.ggcorrplot
+  version: '>= 0.1.4.1'
+- type: software
+  title: GGally
+  abstract: 'GGally: Extension to ''ggplot2'''
+  notes: Imports
+  url: https://ggobi.github.io/ggally/
+  repository: https://CRAN.R-project.org/package=GGally
+  authors:
+  - family-names: Schloerke
+    given-names: Barret
+    email: schloerke@gmail.com
+  - family-names: Cook
+    given-names: Di
+    email: dicook@monash.edu
+  - family-names: Larmarange
+    given-names: Joseph
+    email: joseph@larmarange.net
+  - family-names: Briatte
+    given-names: Francois
+    email: f.briatte@gmail.com
+  - family-names: Marbach
+    given-names: Moritz
+    email: mmarbach@mail.uni-mannheim.de
+  - family-names: Thoen
+    given-names: Edwin
+    email: edwinthoen@gmail.com
+  - family-names: Elberg
+    given-names: Amos
+    email: amos.elberg@gmail.com
+  - family-names: Crowley
+    given-names: Jason
+    email: crowley.jason.s@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.GGally
+  version: '>= 2.1.2'
+- type: software
   title: gginnards
   abstract: 'gginnards: Explore the Innards of ''ggplot2'' Objects'
   notes: Imports
@@ -183,6 +259,20 @@ references:
   doi: 10.32614/CRAN.package.ggplot2
   version: '>= 3.5.1'
 - type: software
+  title: ggspatial
+  abstract: 'ggspatial: Spatial Data Framework for ggplot2'
+  notes: Imports
+  url: https://paleolimbot.github.io/ggspatial/
+  repository: https://CRAN.R-project.org/package=ggspatial
+  authors:
+  - family-names: Dunnington
+    given-names: Dewey
+    email: dewey@fishandwhistle.net
+    orcid: https://orcid.org/0000-0002-9415-4582
+  year: '2025'
+  doi: 10.32614/CRAN.package.ggspatial
+  version: '>= 1.1.9'
+- type: software
   title: hms
   abstract: 'hms: Pretty Time of Day'
   notes: Imports
@@ -196,6 +286,19 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.hms
   version: '>= 1.1.3'
+- type: software
+  title: latex2exp
+  abstract: 'latex2exp: Use LaTeX Expressions in Plots'
+  notes: Imports
+  url: https://www.stefanom.io/latex2exp/
+  repository: https://CRAN.R-project.org/package=latex2exp
+  authors:
+  - family-names: Meschiari
+    given-names: Stefano
+    email: stefano.meschiari@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.latex2exp
+  version: '>= 0.9.6'
 - type: software
   title: lifecycle
   abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -232,7 +335,7 @@ references:
   version: '>= 1.9.4'
 - type: software
   title: lubritime
-  abstract: 'lubritime: An Extension for the Lubridate Package'
+  abstract: 'lubritime: An Extension for lubridate'
   notes: Imports
   url: https://danielvartan.github.io/lubritime/
   authors:
@@ -241,6 +344,22 @@ references:
     email: danvartan@gmail.com
     orcid: https://orcid.org/0000-0001-7782-759X
   year: '2025'
+- type: software
+  title: maps
+  abstract: 'maps: Draw Geographical Maps'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=maps
+  authors:
+  - family-names: Becker
+    given-names: Original S code by Richard A.
+  - family-names: Minka
+    given-names: Allan R. Wilks. R version by Ray Brownrigg. Enhancements by Thomas
+      P
+  - family-names: Deckmyn.
+    given-names: Alex
+  year: '2025'
+  doi: 10.32614/CRAN.package.maps
+  version: '>= 3.4.2.1'
 - type: software
   title: prettycheck
   abstract: 'prettycheck: Pretty assertive programming'
@@ -293,6 +412,17 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.sf
   version: '>= 1.0.19'
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 4.3'
 - type: software
   title: stringr
   abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'

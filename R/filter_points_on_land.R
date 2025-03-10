@@ -1,9 +1,3 @@
-# library(checkmate)
-# library(dplyr)
-# library(magrittr)
-# library(sf)
-# library(tidyr)
-
 filter_points_on_land <- function(data, geometry) {
   checkmate::assert_tibble(data)
   checkmate::assert_subset(c("longitude", "latitude"), names(data))

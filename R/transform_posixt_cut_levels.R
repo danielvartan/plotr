@@ -1,9 +1,5 @@
-# library(cli)
-# library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stringr)
-
-transform_cut_levels <- function(x, tz = "UTC") {
+# Transform `cut`` bins in `Interval` objects
+transform_posixt_cut_levels <- function(x, tz = "UTC") {
   pattern <- "^[\\(\\[][\\d.e+]+,[\\d.e+]+[\\)\\]]$"
 
   checkmate::assert_character(x, min.len = 1)

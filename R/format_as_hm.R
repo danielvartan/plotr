@@ -8,7 +8,7 @@ format_as_hm <- function(x, type = NULL) {
   checkmate::assert_multi_class(x, classes)
 
   if (hms::is_hms(x)) {
-    out <- lubritime:::fix_hms(x)
+    out <- lubritime::fix_hms(x)
   } else {
     out <-
       x |>

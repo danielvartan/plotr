@@ -1,7 +1,7 @@
 # library(checkmate)
 # library(gginnards)
 
-rm_scale <- function(plot) {
+rm_ggspatial_scale <- function(plot) {
   checkmate::assert_class(plot, "gg")
 
   # plot$layers[[3]]$constructor[[1]][[3]]
