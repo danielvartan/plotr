@@ -71,10 +71,7 @@ get_msf_sc_cutoffs <- function(
       interval = cut(
         !!as.symbol(col_msf_sc),
         breaks =
-          lubritime::link_to_timeline(
-            rutils::drop_na(!!as.symbol(col_msf_sc))
-          ) |>
-          as.numeric() |>
+          rutils::drop_na(!!as.symbol(col_msf_sc)) |>
           stats::quantile(probs),
         dig.lab = 10,
         include.lowest = TRUE
