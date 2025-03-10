@@ -46,8 +46,7 @@ get_msf_sc_cutoffs <- function(
     tidyr::drop_na() |>
     dplyr::mutate(
       !!as.symbol(col_msf_sc) :=
-        !!as.symbol(col_msf_sc) |>
-        lubritime::link_to_timeline() |>
+        lubritime::link_to_timeline(!!as.symbol(col_msf_sc)) |>
         as.numeric()
     )
 
@@ -72,9 +71,9 @@ get_msf_sc_cutoffs <- function(
       interval = cut(
         !!as.symbol(col_msf_sc),
         breaks =
-          !!as.symbol(col_msf_sc) |>
-          rutils::drop_na() |>
-          lubritime::link_to_timeline() |>
+          lubritime::link_to_timeline(
+            rutils::drop_na(!!as.symbol(col_msf_sc))
+          ) |>
           as.numeric() |>
           stats::quantile(probs),
         dig.lab = 10,

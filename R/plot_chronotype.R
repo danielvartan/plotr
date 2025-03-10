@@ -85,8 +85,10 @@ plot_chronotype <- function(
     tidyr::drop_na() |>
     dplyr::mutate(
       !!as.symbol(col_msf_sc) :=
-          !!as.symbol(col_msf_sc) |> #nolint
-          lubritime::link_to_timeline(threshold = col_msf_sc_threshold) |>
+          lubritime::link_to_timeline( #nolint
+            !!as.symbol(col_msf_sc),
+            threshold = col_msf_sc_threshold
+          ) |>
           as.numeric()
     )
 
