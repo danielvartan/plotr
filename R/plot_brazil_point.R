@@ -109,7 +109,10 @@ plot_brazil_point <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    brandr::scale_color_brand_d(
+    brandr::scale_brand(
+      aesthetics = "color",
+      scale_type = "d",
+      color_type = "seq",
       direction = direction,
       breaks = breaks,
       labels = labels,
