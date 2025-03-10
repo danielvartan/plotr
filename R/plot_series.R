@@ -94,8 +94,7 @@ plot_series <- function(
         !!as.symbol(col_x) :=
           `levels<-`(
             !!as.symbol(col_x),
-            !!as.symbol(col_x) |>
-              levels() |>
+            levels(!!as.symbol(col_x)) |>
               rutils::cut_interval_mean(round = TRUE) |>
               change_sign(change_sign)
           ) |>
@@ -108,8 +107,7 @@ plot_series <- function(
         !!as.symbol(col_x) :=
           `levels<-`(
             !!as.symbol(col_x),
-            !!as.symbol(col_x) |>
-              levels() |>
+            levels(!!as.symbol(col_x)) |>
               rutils::cut_interval_mean(round = TRUE) |>
               change_sign(change_sign)
           )

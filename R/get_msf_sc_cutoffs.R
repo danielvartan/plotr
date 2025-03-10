@@ -7,8 +7,7 @@
 #     interval = cut( # Bins by quantiles.
 #       !!as.symbol(col_msf_sc),
 #       breaks =
-#         !!as.symbol(col_msf_sc) |>
-#         rutils::drop_na() |>
+#         rutils::drop_na(!!as.symbol(col_msf_sc)) |>
 #         lubritime::link_to_timeline() |>
 #         as.numeric() |>
 #         stats::quantile(probs),
