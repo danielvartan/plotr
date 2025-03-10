@@ -176,7 +176,7 @@ plot_chronotype <- function(
       linewidth = col_border
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
-    ggplot2::scale_y_discrete(labels = skip_label(type = "even")) +
+    ggplot2::scale_y_discrete(labels = \(x) skip_label(x, type = "even")) +
     brandr::scale_fill_brand_d(
       color_type = color_type,
       direction = direction,
