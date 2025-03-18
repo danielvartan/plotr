@@ -37,6 +37,7 @@ Imports:
     lubridate (>= 1.9.4),
     lubritime,
     maps (>= 3.4.2.1),
+    orbis,
     prettycheck,
     rlang (>= 1.1.4),
     rutils,
@@ -54,6 +55,7 @@ Suggests:
 Remotes:
     github::danielvartan/brandr,
     github::danielvartan/lubritime,
+    github::danielvartan/orbis,
     github::danielvartan/prettycheck,
     github::danielvartan/rutils
 Config/testthat/edition: 3

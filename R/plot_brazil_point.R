@@ -50,7 +50,7 @@ plot_brazil_point <- function(
 
   plot <-
     data |>
-    filter_points_on_land(dplyr::pull(brazil_state_data, geom)) |>
+    orbis::filter_points_on_land(dplyr::pull(brazil_state_data, geom)) |>
     dplyr::select(
       dplyr::all_of(c(col_latitude, col_longitude, col_group))
     ) |>

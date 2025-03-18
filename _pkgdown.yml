@@ -38,7 +38,7 @@ reference:
 
 # - title: Bivariate
 #   contents:
-#   - ggally
+#   - plot_series
 
 # - title: Multivariate
 #   contents:
@@ -52,13 +52,6 @@ reference:
 #   - plot_brazil_state
 #   - plot_latitude_series
 #   - plot_world_countries
-
-# - title: Geographical Utilities
-#   contents:
-#   - filter_points_on_land
-#   - get_brazil_uf
-#   - get_map_fill_data
-#   - rm_ggspatial_scale
 
 - title: Labels
   contents:
@@ -78,6 +71,7 @@ reference:
 # - title: Utilities
 #   contents:
 #   - gg_color_hue
+#   - rm_ggspatial_scale
 #   - transform_posixt_cut_levels
 
 authors:

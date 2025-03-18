@@ -62,7 +62,7 @@ plot_brazil_state <- function(
 
   plot <-
     data |>
-    get_map_fill_data(
+    orbis::get_map_fill_data(
       col_fill = col_fill,
       col_code = col_code,
       name_col_ref = "code_state",
