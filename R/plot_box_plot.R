@@ -3,6 +3,7 @@ plot_box_plot <- function(
     col,
     label = col,
     jitter = FALSE,
+    cord_flip = TRUE,
     print = TRUE,
     brandr = file.exists(here::here("_brand.yml")),
     breaks = label,
@@ -11,13 +12,14 @@ plot_box_plot <- function(
   checkmate::assert_tibble(data)
   checkmate::assert_character(col)
   checkmate::assert_subset(col, names(data))
-  checkmate::assert_flag(jitter)
   checkmate::assert_character(label)
+  checkmate::assert_flag(jitter)
+  checkmate::assert_flag(cord_flip)
   checkmate::assert_flag(print)
   checkmate::assert_flag(brandr)
   checkmate::assert_character(breaks)
 
-  # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
+  # R CMD Check variable bindings fix
   # nolint start
   name <- value <- NULL
   # nolint end
@@ -81,18 +83,44 @@ plot_box_plot <- function(
       ),
       outlier.shape = 1,
       width = 0.75
-    ) +
-    ggplot2::coord_flip() +
-    ggplot2::labs(
-      x = "Variable",
-      y = "Value",
-      fill = NULL
-    ) +
-    ggplot2::theme(
-      axis.title.y = ggplot2::element_blank(),
-      axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank()
     )
+
+  if (isTRUE(cord_flip)) {
+    plot <-
+      plot +
+      ggplot2::coord_flip() +
+      ggplot2::theme(
+        axis.title.y = ggplot2::element_blank(),
+        axis.text.y = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank()
+      ) +
+      ggplot2::labs(
+        x = "Variable",
+        y = "Value",
+        fill = NULL
+      )
+
+    if (prettycheck::test_temporal(data[[col]])[1]) {
+      plot <- plot + ggplot2::scale_x_continuous(labels = format_as_hm)
+    }
+  } else {
+    plot <-
+      plot +
+      ggplot2::theme(
+        axis.title.x = ggplot2::element_blank(),
+        axis.text.x = ggplot2::element_blank(),
+        axis.ticks.x = ggplot2::element_blank()
+      ) +
+      ggplot2::labs(
+        x = "Variable",
+        y = "Value",
+        fill = NULL
+      )
+
+    if (prettycheck::test_temporal(data[[col]])[1]) {
+      plot <- plot + ggplot2::scale_y_continuous(labels = format_as_hm)
+    }
+  }
 
   if (isTRUE(jitter)) {
     plot <-

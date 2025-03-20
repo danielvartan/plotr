@@ -432,6 +432,20 @@ references:
     orcid: https://orcid.org/0000-0001-7782-759X
   year: '2025'
 - type: software
+  title: patchwork
+  abstract: 'patchwork: The Composer of Plots'
+  notes: Imports
+  url: https://patchwork.data-imaginist.com
+  repository: https://CRAN.R-project.org/package=patchwork
+  authors:
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomasp85@gmail.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  year: '2025'
+  doi: 10.32614/CRAN.package.patchwork
+  version: '>= 1.3.0'
+- type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
   notes: Imports

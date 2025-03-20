@@ -1,9 +1,11 @@
 plot_ggally <- function(
     data, # nolint
     cols = names(data),
+    labels = colnames(data[cols]),
     mapping = NULL, # ggplot2::aes(colour = sex)
     axis_labels = "none",
     na_rm = TRUE,
+    progress = FALSE,
     print = TRUE,
     brandr = file.exists(here::here("_brand.yml")),
     ...
@@ -11,9 +13,12 @@ plot_ggally <- function(
   checkmate::assert_tibble(data)
   checkmate::assert_character(cols)
   checkmate::assert_subset(cols, names(data))
+  checkmate::assert_character(labels)
+  prettycheck::assert_length(labels, length(cols))
   checkmate::assert_class(mapping, "uneval", null.ok = TRUE)
   checkmate::assert_choice(axis_labels, c("show", "internal", "none"))
   checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(progress)
   checkmate::assert_flag(print)
 
   if (isTRUE(brandr)) {
@@ -55,6 +60,8 @@ plot_ggally <- function(
       GGally::ggpairs(
         lower = list(continuous = "smooth"),
         axisLabels = axis_labels,
+        progress = progress,
+        columnLabels = labels,
         ...
       )
   } else {
@@ -63,6 +70,8 @@ plot_ggally <- function(
       GGally::ggpairs(
         mapping = mapping,
         axisLabels = axis_labels,
+        progress = progress,
+        columnLabels = labels,
         ...
       ) +
       color_scale() +

@@ -32,9 +32,11 @@
     "ggally",
     "ggcorrplot",
     "gginnards",
+    "ggpairs",
     "ggplot",
     "ggsave",
     "ggspatial",
+    "groomr",
     "integerish",
     "lightswitch",
     "magick",
@@ -45,10 +47,12 @@
     "ORCID",
     "plotr",
     "posixt",
+    "quantiles",
     "rmarkdown",
     "Roenneberg",
     "rstudio",
     "tcltk",
+    "uneval",
     "usethis"
   ]
 }

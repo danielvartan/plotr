@@ -34,6 +34,10 @@ plot_qq <- function(
     ) +
     ggplot2::theme(legend.position = "none")
 
+  if (prettycheck::test_temporal(data[[col]])) {
+    plot <- plot + ggplot2::scale_y_continuous(labels = format_as_hm)
+  }
+
   if (isTRUE(print)) print(plot)
 
   invisible(plot)
