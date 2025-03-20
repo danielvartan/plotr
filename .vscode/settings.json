@@ -18,5 +18,37 @@
     "titleBar.inactiveBackground": "#80808099",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "gray"
+  "peacock.color": "gray",
+  "cSpell.words": [
+    "apyramid",
+    "Bivariate",
+    "brandr",
+    "bslib",
+    "chronotype",
+    "colour",
+    "errorbar",
+    "forcats",
+    "geobr",
+    "ggally",
+    "ggcorrplot",
+    "gginnards",
+    "ggplot",
+    "ggsave",
+    "ggspatial",
+    "integerish",
+    "lightswitch",
+    "magick",
+    "MCTQ",
+    "muni",
+    "noindex",
+    "orbis",
+    "ORCID",
+    "plotr",
+    "posixt",
+    "rmarkdown",
+    "Roenneberg",
+    "rstudio",
+    "tcltk",
+    "usethis"
+  ]
 }

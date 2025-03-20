@@ -22,16 +22,12 @@ plot_brazil_state <- function(
     data, #nolint
     col_fill = NULL,
     col_code = "state_code",
-    transform = "identity", # See ?ggplot2::scale_fill_gradient
-    direction = 1,
-    binned = TRUE,
-    breaks = ggplot2::waiver(),
-    n_breaks = NULL,
-    labels = ggplot2::waiver(),
-    reverse = TRUE,
-    limits = NULL,
+    year = 2022,
     print = TRUE,
-    quiet = FALSE
+    quiet = FALSE,
+    brandr = file.exists(here::here("_brand.yml")),
+    scale_type = "binned",
+    ...
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
@@ -41,24 +37,26 @@ plot_brazil_state <- function(
   checkmate::assert_string(col_code)
   checkmate::assert_choice(col_code, names(data))
   checkmate::assert_integerish(data[[col_code]])
-  checkmate::assert_multi_class(transform, c("character", "transform"))
-  checkmate::assert_choice(direction, c(-1, 1))
-  checkmate::assert_flag(binned)
-  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
-  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  checkmate::assert_flag(reverse)
+  checkmate::assert_int(year)
   checkmate::assert_flag(print)
   checkmate::assert_flag(quiet)
-
-  checkmate::assert_multi_class(
-    limits, c("numeric", "function"), null.ok = TRUE
-  )
+  checkmate::assert_flag(brandr)
+  checkmate::assert_string(scale_type)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
   geom <- n <- unit <- NULL
   # nolint end
+
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_brand(
+      aesthetics = "fill",
+      scale_type = scale_type,
+      ...
+    )
+  } else {
+    color_scale <- ggplot2::scale_fill_binned(...)
+  }
 
   plot <-
     data |>
@@ -70,7 +68,7 @@ plot_brazil_state <- function(
     ) |>
     dplyr::right_join(
       geobr::read_state(
-        year = 2017,
+        year = year,
         showProgress = FALSE
       ) |>
         rutils::shush(),
@@ -107,17 +105,7 @@ plot_brazil_state <- function(
       y = NULL,
       fill = NULL
     ) +
-    brandr::scale_brand(
-      aesthetics = "fill",
-      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
-      direction = direction,
-      breaks = breaks,
-      n.breaks = n_breaks,
-      labels = labels,
-      reverse = reverse,
-      limits = limits,
-      transform = transform
-    )
+    color_scale()
 
   # if (isFALSE(binned)) {
   #   plot <-

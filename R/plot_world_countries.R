@@ -24,16 +24,10 @@ plot_world_countries <- function(
     data, #nolint
     col_fill = NULL,
     col_country = "country",
-    transform = "log10", # See ?ggplot2::scale_fill_gradient
-    direction = 1,
-    binned = TRUE,
-    breaks = ggplot2::waiver(),
-    n_breaks = NULL,
-    labels = ggplot2::waiver(),
-    reverse = TRUE,
-    limits = NULL,
+    brandr = file.exists(here::here("_brand.yml")),
     print = TRUE,
-    quiet = FALSE
+    quiet = FALSE,
+    ...
   ) {
   checkmate::assert_tibble(data)
   checkmate::assert_subset("country", names(data))
@@ -42,23 +36,20 @@ plot_world_countries <- function(
   checkmate::assert_string(col_country)
   checkmate::assert_choice(col_country, names(data))
   checkmate::assert_character(data[[col_country]])
-  checkmate::assert_multi_class(transform, c("character", "transform"))
-  checkmate::assert_choice(direction, c(-1, 1))
-  checkmate::assert_flag(binned)
-  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
-  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(brandr)
   checkmate::assert_flag(print)
   checkmate::assert_flag(quiet)
-  checkmate::assert_multi_class(
-    limits, c("numeric", "function"), null.ok = TRUE
-  )
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
   geom <- n <- NULL
   # nolint end
+
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_brand(aesthetics = "fill", ...)
+  } else {
+    color_scale <- ggplot2::scale_fill_continuous(...)
+  }
 
   data <-
     data |>
@@ -103,21 +94,9 @@ plot_world_countries <- function(
       # limits = c(-180, 180)
     )
 
-  if (data |> tidyr::drop_na() |> nrow() == 1) binned <- FALSE
-
   plot <-
     plot +
-    brandr::scale_brand(
-      aesthetics = "fill",
-      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
-      direction = direction,
-      breaks = breaks,
-      n.breaks = n_breaks,
-      labels = labels,
-      reverse = reverse,
-      limits = limits,
-      transform = transform
-    ) +
+    color_scale() +
     ggplot2::labs(
       x = NULL,
       y = NULL,

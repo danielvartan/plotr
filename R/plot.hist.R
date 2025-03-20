@@ -5,6 +5,11 @@ plot_hist <- function(
     bins = 30,
     stat = "density",
     density_line = TRUE,
+    density_line_color = ifelse(
+      file.exists(here::here("_brand.yml")),
+      brandr::get_brand_color("primary"),
+      "red"
+    ),
     na_rm = TRUE,
     x_label = name,
     y_label = ifelse(stat == "count", "Frequency", "Density"),
@@ -18,6 +23,7 @@ plot_hist <- function(
   checkmate::assert_number(bins, lower = 1)
   checkmate::assert_choice(stat, c("count", "density"))
   checkmate::assert_flag(density_line)
+  prettycheck::assert_color(density_line_color)
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
   prettycheck::assert_ggplot_label(x_label)
@@ -45,7 +51,7 @@ plot_hist <- function(
 
   if (stat == "density" && isTRUE(density_line)) {
     plot <- plot + ggplot2::geom_density(
-      color = brandr::get_brand_color("primary"),
+      color = density_line_color,
       linewidth = 1
     )
   }

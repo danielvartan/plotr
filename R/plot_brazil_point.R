@@ -3,15 +3,12 @@ plot_brazil_point <- function(
     col_latitude = "latitude",
     col_longitude = "longitude",
     col_group = NULL,
-    transform = "identity",
-    direction = 1,
+    year = 2022,
     alpha = 0.75,
     size_point = 0.5,
-    breaks = ggplot2::waiver(),
-    labels = ggplot2::waiver(),
-    reverse = FALSE,
-    limits = NULL,
-    print = TRUE
+    print = TRUE,
+    brandr = file.exists(here::here("_brand.yml")),
+    ...
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
@@ -23,27 +20,26 @@ plot_brazil_point <- function(
   prettycheck::assert_numeric(data[[col_longitude]])
   checkmate::assert_string(col_group, null.ok = TRUE)
   checkmate::assert_choice(col_group, names(data), null.ok = TRUE)
-  checkmate::assert_multi_class(transform, c("character", "transform"))
-  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_int(year)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
   checkmate::assert_number(size_point, lower = 0)
-  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  checkmate::assert_flag(reverse)
   checkmate::assert_flag(print)
-
-  checkmate::assert_multi_class(
-    limits, c("numeric", "function"), null.ok = TRUE
-  )
+  checkmate::assert_flag(brandr)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
   . <- geom <- unit <- NULL
   # nolint end
 
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_brand(...)
+  } else {
+    color_scale <- ggplot2::scale_color_continuous(...)
+  }
+
   brazil_state_data <-
     geobr::read_state(
-      year = 2017,
+      year = year,
       showProgress = FALSE
     ) |>
     rutils::shush()
@@ -109,16 +105,7 @@ plot_brazil_point <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    brandr::scale_brand(
-      aesthetics = "color",
-      scale_type = "d",
-      color_type = "seq",
-      direction = direction,
-      breaks = breaks,
-      labels = labels,
-      reverse = reverse,
-      limits = limits
-    ) +
+    color_scale() +
     ggplot2::labs(
       x = NULL,
       y = NULL

@@ -12,20 +12,18 @@ plot_brazil_municipality <- function(
     data, #nolint
     col_fill = NULL,
     col_code = "municipality_code",
-    transform = "identity", # See `?ggplot2::scale_fill_gradient`
-    direction = 1,
+    year = 2022,
+    comparable_areas = FALSE, # See ?geobr::read_comparable_areas
     alpha = 1,
-    binned = TRUE,
     range = c(0, 10),
-    breaks = ggplot2::waiver(),
-    n_breaks = NULL,
-    labels = ggplot2::waiver(),
-    reverse = TRUE,
-    limits = NULL,
     zero_na = FALSE,
     point = FALSE,
     print = TRUE,
-    quiet = FALSE
+    quiet = FALSE,
+    brandr = file.exists(here::here("_brand.yml")),
+    scale_type = "binned",
+    na.value = "white", #nolint
+    ...
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
@@ -35,44 +33,83 @@ plot_brazil_municipality <- function(
   checkmate::assert_string(col_code)
   checkmate::assert_choice(col_code, names(data))
   checkmate::assert_integerish(data[[col_code]])
-  checkmate::assert_multi_class(transform, c("character", "transform"))
-  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_int(year)
+  checkmate::assert_flag(comparable_areas)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
-  checkmate::assert_flag(binned)
   checkmate::assert_integerish(range, len = 2)
-  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
-  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  checkmate::assert_flag(reverse)
   checkmate::assert_flag(zero_na)
   checkmate::assert_flag(point)
   checkmate::assert_flag(print)
   checkmate::assert_flag(quiet)
-
-  checkmate::assert_multi_class(
-    limits, c("numeric", "function"), null.ok = TRUE
-  )
+  checkmate::assert_flag(brandr)
+  checkmate::assert_string(scale_type)
+  prettycheck::assert_color(na.value)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
-  geom <- n <- unit <- NULL
+  . <- geom <- n <- unit <- NULL
   # nolint end
 
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_brand(
+      aesthetics = ifelse(isTRUE(point), "color", "fill"),
+      scale_type = scale_type,
+      na.value = na.value,
+      ...
+    )
+  } else {
+    color_scale <- ifelse(
+      isTRUE(point),
+      ggplot2::scale_color_binned(na.value = na.value, ...),
+      ggplot2::scale_fill_binned(na.value = na.value, ...)
+    )
+  }
+
+  if (isTRUE(comparable_areas)) {
+    geom_data <-
+      geobr::read_comparable_areas(
+        showProgress = FALSE
+      ) |>
+      rutils::shush()
+
+    out <-
+      data |>
+      dplyr::mutate(
+        amc_code = purrr::map_int(
+          as.character(!!as.symbol(col_code)),
+          function(x) {
+            geom_data$list_code_muni_2010 |>
+              stringr::str_detect(x) %>%
+              magrittr::extract(geom_data$code_amc, .) |>
+              as.integer() %>%
+              ifelse(length(.) == 0, NA_integer_, .)
+          }
+        )
+      )
+
+    col_code <- "amc_code"
+  } else {
+    geom_data <-
+      geobr::read_municipality(
+        year = 2022,
+        showProgress = FALSE
+      ) |>
+      rutils::shush()
+
+    out <- data
+  }
+
   out <-
-    data |>
+    out |>
     orbis::get_map_fill_data(
       col_fill = col_fill,
       col_code = col_code,
-      name_col_ref = "code_muni",
-      quiet = quiet
+      name_col_ref = ifelse(isTRUE(comparable_areas), "code_amc", "code_muni"),
+      quiet = ifelse(isTRUE(comparable_areas), TRUE, quiet)
     ) |>
     dplyr::right_join(
-      geobr::read_municipality(
-        year = 2017,
-        showProgress = FALSE
-      ) |>
-        rutils::shush(),
-      by = "code_muni"
+      y = geom_data,
+      by = ifelse(isTRUE(comparable_areas), "code_amc", "code_muni")
     )
 
   if (isTRUE(zero_na)) {
@@ -85,21 +122,28 @@ plot_brazil_municipality <- function(
       plot_brazil_municipality_point(
         alpha = alpha,
         range = range,
-        breaks = breaks
+        ...
       )
   } else {
     plot <-
       out |>
       ggplot2::ggplot() +
       ggplot2::geom_sf(
-        ggplot2::aes(geometry = geom),
-        color = "gray75",
-        linewidth = 0.1,
-        fill = "white"
+        ggplot2::aes(geometry = geom, fill = n),
+        color = "black",
+        linewidth = 0.02
       ) +
       ggplot2::geom_sf(
-        ggplot2::aes(geometry = geom, fill = n),
-        color = NA
+        inherit.aes = FALSE,
+        ggplot2::aes(geometry = geom),
+        data = geobr::read_country(
+          year = year,
+          showProgress = FALSE
+        ) |>
+          rutils::shush(),
+        color = "black",
+        fill = NA,
+        linewidth = 0.05
       )
   }
 
@@ -127,17 +171,7 @@ plot_brazil_municipality <- function(
       color = NULL,
       size = NULL
     ) +
-    brandr::scale_brand(
-      aesthetics = ifelse(isTRUE(point), "color", "fill"),
-      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
-      direction = direction,
-      breaks = breaks,
-      n.breaks = n_breaks,
-      labels = labels,
-      reverse = ifelse(isTRUE(point), FALSE, reverse),
-      limits = limits,
-      transform = transform
-    )
+    color_scale()
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
 
@@ -157,12 +191,11 @@ plot_brazil_municipality_point <- function(
     data, #nolint
     alpha = 0.7,
     range = c(0, 10),
-    breaks = ggplot2::waiver()
+    ...
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
-  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
   checkmate::assert_integerish(range, len = 2)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
@@ -188,7 +221,7 @@ plot_brazil_municipality_point <- function(
   ggplot2::ggplot() +
     ggplot2::geom_sf(
       data = geobr::read_state(
-        year = 2017,
+        year = 2022,
         showProgress = FALSE
       ) |>
         rutils::shush(),
@@ -214,7 +247,7 @@ plot_brazil_municipality_point <- function(
     ) +
     ggplot2::scale_size_continuous(
       range = range,
-      breaks = breaks
+      ...
     ) +
     ggplot2::theme(legend.key = ggplot2::element_blank())
 }

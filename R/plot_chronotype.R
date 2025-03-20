@@ -34,11 +34,11 @@ plot_chronotype <- function(
     col_width = 0.8,
     col_border = 0.1,
     color_type = "div",
-    direction = 1,
-    reverse = FALSE,
     col_msf_sc_threshold = hms::parse_hm("12:00"),
     y_label = latex2exp::TeX("Local time ($MSF_{sc}$)"),
-    print = TRUE
+    print = TRUE,
+    brandr = file.exists(here::here("_brand.yml")),
+    ...
   ) {
   # See <https://ggplot2.tidyverse.org/reference/scale_brewer.html>.
   color_type_choices <- c(
@@ -52,8 +52,6 @@ plot_chronotype <- function(
   checkmate::assert_number(col_width, lower = 0)
   checkmate::assert_number(col_border, lower = 0)
   checkmate::assert_choice(color_type, color_type_choices)
-  checkmate::assert_choice(direction, c(-1, 1))
-  checkmate::assert_flag(reverse)
   prettycheck::assert_hms(
     col_msf_sc_threshold,
     lower = hms::hms(0),
@@ -62,12 +60,19 @@ plot_chronotype <- function(
   )
   prettycheck::assert_ggplot_label(y_label)
   checkmate::assert_flag(print)
+  checkmate::assert_flag(brandr)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
   freq <- int <- interval <- label <- NULL
   ee <- me <- se <- int <- sl <- ml <- el <- NULL
   # nolint end
+
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_fill_brand_d(.color_type = color_type, ...)
+  } else {
+    color_scale <- ggplot2::scale_fill_discrete(...)
+  }
 
   if (is.null(y_label)) {
     if (hms::is_hms(data[[col_msf_sc]])) {
@@ -177,11 +182,7 @@ plot_chronotype <- function(
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
     ggplot2::scale_y_discrete(labels = \(x) skip_label(x, type = "even")) +
-    brandr::scale_fill_brand_d(
-      color_type = color_type,
-      direction = direction,
-      reverse = reverse
-    ) +
+    color_scale() +
     ggplot2::labs(
       x = "Frequency (%)",
       y = y_label,

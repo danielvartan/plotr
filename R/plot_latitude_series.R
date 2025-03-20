@@ -4,6 +4,11 @@ plot_latitude_series <- function(
     col_latitude = "latitude",
     group_width = 1,
     linewidth = 2,
+    line_color = ifelse(
+      file.exists(here::here("_brand.yml")),
+      brandr::get_brand_color("primary"),
+      "red"
+    ),
     date_breaks = "1 hour",
     minor_breaks = NULL,
     limits = NULL,
@@ -20,6 +25,7 @@ plot_latitude_series <- function(
   checkmate::assert_subset(col_latitude, names(data))
   prettycheck::assert_numeric(data[[col_latitude]])
   checkmate::assert_number(linewidth, lower = 0)
+  prettycheck::assert_color(line_color)
   checkmate::assert_string(date_breaks)
 
   checkmate::assert_multi_class(
@@ -92,7 +98,7 @@ plot_latitude_series <- function(
       method = "lm",
       formula = y ~ x,
       linewidth = linewidth,
-      color = brandr::get_brand_color("primary"),
+      color = line_color,
       alpha = 0.75
     ) +
     ggplot2::scale_x_reverse(limits = limits) +

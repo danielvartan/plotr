@@ -5,6 +5,7 @@ plot_ggally <- function(
     axis_labels = "none",
     na_rm = TRUE,
     print = TRUE,
+    brandr = file.exists(here::here("_brand.yml")),
     ...
   ) {
   checkmate::assert_tibble(data)
@@ -14,6 +15,14 @@ plot_ggally <- function(
   checkmate::assert_choice(axis_labels, c("show", "internal", "none"))
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
+
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_color_brand_d()
+    fill_scale <- brandr::scale_fill_brand_d()
+  } else {
+    color_scale <- ggplot2::scale_color_discrete()
+    fill_scale <- ggplot2::scale_fill_discrete()
+  }
 
   out <-
     data |>
@@ -56,8 +65,8 @@ plot_ggally <- function(
         axisLabels = axis_labels,
         ...
       ) +
-      brandr::scale_color_brand_d() +
-      brandr::scale_fill_brand_d()
+      color_scale() +
+      fill_scale()
   }
 
   plot <-

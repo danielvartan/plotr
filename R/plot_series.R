@@ -23,7 +23,9 @@ plot_series <- function(
     x_label = "Age",
     y_label = latex2exp::TeX("$MSF_{sc}$"), # "$MSF_{sc} \\pm SEM$"
     color_label = "Sex",
-    print = TRUE
+    print = TRUE,
+    brandr = file.exists(here::here("_brand.yml")),
+    ...
   ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
@@ -58,6 +60,12 @@ plot_series <- function(
   # nolint start
   std_error <- NULL
   # nolint end
+
+  if (isTRUE(brandr)) {
+    color_scale <- brandr::scale_color_brand_d(...)
+  } else {
+    color_scale <- ggplot2::scale_color_discrete(...)
+  }
 
   if (y_label == col_y && hms::is_hms(data[[col_y]])) {
     y_label <- paste0("Local time (", col_y, " +- SEM)")
@@ -128,7 +136,7 @@ plot_series <- function(
 
   data_by_col_x <-
     data |>
-    dplyr::summarise(
+    dplyr::summarize(
       std_error = rutils::std_error(!!as.symbol(col_y)),
       !!as.symbol(col_y) := mean(!!as.symbol(col_y), na.rm = TRUE),
       .by = !!as.symbol(col_x)
@@ -138,7 +146,7 @@ plot_series <- function(
 
   data_by_col_x_and_col_group <-
     data |>
-    dplyr::summarise(
+    dplyr::summarize(
       std_error = rutils::std_error(!!as.symbol(col_y)),
       !!as.symbol(col_y) := mean(!!as.symbol(col_y), na.rm = TRUE),
       .by = c(!!as.symbol(col_x), !!as.symbol(col_group))
@@ -164,7 +172,7 @@ plot_series <- function(
       size = point_size
     ) +
     ggplot2::scale_x_discrete(breaks = fix_label_decimals) +
-    brandr::scale_color_brand_d() +
+    color_scale() +
     ggplot2::labs(
       x = x_label,
       y = y_label,

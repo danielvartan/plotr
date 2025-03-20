@@ -1,8 +1,19 @@
-plot_qq <- function(data, col, na_rm = TRUE, print = TRUE) {
+plot_qq <- function(
+    data, #nolint
+    col,
+    line_color = ifelse(
+      file.exists(here::here("_brand.yml")),
+      brandr::get_brand_color("primary"),
+      "red"
+    ),
+    na_rm = TRUE,
+    print = TRUE
+  ) {
   checkmate::assert_tibble(data)
   checkmate::assert_string(col)
   checkmate::assert_subset(col, names(data))
   prettycheck::assert_numeric(data[[col]])
+  prettycheck::assert_color(line_color)
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
 
@@ -14,7 +25,7 @@ plot_qq <- function(data, col, na_rm = TRUE, print = TRUE) {
     ggplot2::ggplot(ggplot2::aes(sample = !!as.symbol(col))) +
     ggplot2::stat_qq() +
     ggplot2::stat_qq_line(
-      color = brandr::get_brand_color("primary"),
+      color = line_color,
       linewidth = 1
     ) +
     ggplot2::labs(

@@ -1,18 +1,21 @@
 plot_box_plot <- function(
     data, #nolint
     col,
-    direction = 1,
     label = col,
     jitter = FALSE,
-    print = TRUE
+    print = TRUE,
+    brandr = file.exists(here::here("_brand.yml")),
+    breaks = label,
+    ...
   ) {
   checkmate::assert_tibble(data)
   checkmate::assert_character(col)
   checkmate::assert_subset(col, names(data))
-  checkmate::assert_choice(direction, c(-1, 1))
   checkmate::assert_flag(jitter)
   checkmate::assert_character(label)
   checkmate::assert_flag(print)
+  checkmate::assert_flag(brandr)
+  checkmate::assert_character(breaks)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
@@ -71,7 +74,11 @@ plot_box_plot <- function(
       }
     } + #nolint
     ggplot2::geom_boxplot(
-      outlier.colour = brandr::get_brand_color("primary"),
+      outlier.colour = ifelse(
+        isTRUE(brandr),
+        brandr::get_brand_color("primary"),
+        "red"
+      ),
       outlier.shape = 1,
       width = 0.75
     ) +
@@ -99,12 +106,11 @@ plot_box_plot <- function(
   }
 
   if (!length(col) == 1) {
-    plot <-
-      plot +
-      brandr::scale_fill_brand_d(
-        direction = direction,
-        breaks = names(col)
-      )
+    if (isTRUE(brandr)) {
+      plot <- plot + brandr::scale_fill_brand_d(breaks = breaks, ...)
+    } else {
+      ggplot2::scale_fill_discrete(...)
+    }
   }
 
   if (isTRUE(print)) print(plot)

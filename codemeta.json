@@ -146,6 +146,12 @@
       "@type": "SoftwareApplication",
       "identifier": "brandr",
       "name": "brandr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
       "sameAs": "https://github.com/danielvartan/brandr"
     },
     "4": {
@@ -230,7 +236,7 @@
       "@type": "SoftwareApplication",
       "identifier": "GGally",
       "name": "GGally",
-      "version": ">= 2.1.2",
+      "version": ">= 2.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -280,6 +286,19 @@
     },
     "14": {
       "@type": "SoftwareApplication",
+      "identifier": "here",
+      "name": "here",
+      "version": ">= 1.0.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=here"
+    },
+    "15": {
+      "@type": "SoftwareApplication",
       "identifier": "hms",
       "name": "hms",
       "version": ">= 1.1.3",
@@ -291,7 +310,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=hms"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "latex2exp",
       "name": "latex2exp",
@@ -304,7 +323,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=latex2exp"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "lifecycle",
       "name": "lifecycle",
@@ -317,7 +336,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lifecycle"
     },
-    "17": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
@@ -330,13 +349,39 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "18": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "lubritime",
       "name": "lubritime",
       "sameAs": "https://github.com/danielvartan/lubritime"
     },
-    "19": {
+    "20": {
+      "@type": "SoftwareApplication",
+      "identifier": "magick",
+      "name": "magick",
+      "version": ">= 2.8.5",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magick"
+    },
+    "21": {
+      "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "version": ">= 2.0.3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    "22": {
       "@type": "SoftwareApplication",
       "identifier": "maps",
       "name": "maps",
@@ -349,13 +394,45 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=maps"
     },
-    "20": {
+    "23": {
+      "@type": "SoftwareApplication",
+      "identifier": "orbis",
+      "name": "orbis",
+      "sameAs": "https://github.com/danielvartan/orbis"
+    },
+    "24": {
       "@type": "SoftwareApplication",
       "identifier": "prettycheck",
       "name": "prettycheck",
       "sameAs": "https://github.com/danielvartan/prettycheck"
     },
-    "21": {
+    "25": {
+      "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "version": ">= 1.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    "26": {
+      "@type": "SoftwareApplication",
+      "identifier": "ragg",
+      "name": "ragg",
+      "version": ">= 1.3.3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ragg"
+    },
+    "27": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -368,13 +445,13 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "22": {
+    "28": {
       "@type": "SoftwareApplication",
       "identifier": "rutils",
       "name": "rutils",
       "sameAs": "https://github.com/danielvartan/rutils"
     },
-    "23": {
+    "29": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -387,13 +464,13 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "24": {
+    "30": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats",
       "version": ">= 4.3"
     },
-    "25": {
+    "31": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -406,7 +483,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "26": {
+    "32": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -421,7 +498,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "71.522KB",
+  "fileSize": "71.268KB",
   "citation": [
     {
       "@type": "CreativeWork",
