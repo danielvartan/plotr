@@ -1,4 +1,16 @@
 # Borrowed from `rutils`: github.com/danielvartan/rutils
+change_sign <- function(x, flag = TRUE) {
+  prettycheck::assert_numeric(x)
+  checkmate::assert_flag(flag)
+
+  if (isTRUE(flag)) {
+    x * (-1)
+  } else {
+    x
+  }
+}
+
+# Borrowed from `rutils`: github.com/danielvartan/rutils
 cut_interval_mean <- function(x, round = FALSE, names = FALSE) {
   checkmate::assert_multi_class(x, c("character", "factor"))
   checkmate::assert_character(as.character(x), pattern = "^\\[|^\\(")
