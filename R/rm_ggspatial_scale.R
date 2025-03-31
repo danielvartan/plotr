@@ -1,6 +1,3 @@
-# library(checkmate)
-# library(gginnards)
-
 rm_ggspatial_scale <- function(plot) {
   checkmate::assert_class(plot, "gg")
 

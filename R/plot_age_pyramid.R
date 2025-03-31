@@ -1,12 +1,3 @@
-# library(apyramid)
-# library(brandr) # github.com/danielvartan/brandr
-# library(checkmate)
-# library(dplyr)
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-# library(tidyr)
-
 plot_age_pyramid <- function(
     data, #nolint
     interval = 10,

@@ -3,7 +3,7 @@ plot_brazil_point <- function(
     col_latitude = "latitude",
     col_longitude = "longitude",
     col_group = NULL,
-    year = 2022,
+    year = 2020,
     alpha = 0.75,
     size_point = 0.5,
     print = TRUE,
@@ -39,7 +39,7 @@ plot_brazil_point <- function(
 
   brazil_state_data <-
     geobr::read_state(
-      year = year,
+      year = get_closest_geobr_year(year),
       showProgress = FALSE
     ) |>
     rutils::shush()

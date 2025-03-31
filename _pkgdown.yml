@@ -73,6 +73,7 @@ reference:
 #   - gg_color_hue
 #   - rm_ggspatial_scale
 #   - transform_posixt_cut_levels
+#   - get_closest_geobr_year
 
 authors:
   Daniel Vartanian:

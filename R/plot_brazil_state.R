@@ -1,12 +1,3 @@
-# library(brandr) # github.com/danielvartan/brandr
-# library(checkmate)
-# library(dplyr)
-# library(geobr)
-# library(ggplot2)
-# library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
 # # Helpers
 #
 # geocoded_data <- targets::tar_read("geocoded_data")
@@ -22,7 +13,7 @@ plot_brazil_state <- function(
     data, #nolint
     col_fill = NULL,
     col_code = "state_code",
-    year = 2022,
+    year = 2020,
     print = TRUE,
     quiet = FALSE,
     brandr = file.exists(here::here("_brand.yml")),
@@ -68,7 +59,7 @@ plot_brazil_state <- function(
     ) |>
     dplyr::right_join(
       geobr::read_state(
-        year = year,
+        year = get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
         rutils::shush(),

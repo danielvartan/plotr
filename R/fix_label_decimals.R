@@ -1,5 +1,3 @@
-# library(checkmate)
-
 fix_label_decimals <- function(x) {
   checkmate::assert_character(x)
 

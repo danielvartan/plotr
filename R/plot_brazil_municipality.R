@@ -1,13 +1,3 @@
-# library(brandr) # github.com/danielvartan/brandr
-# library(checkmate)
-# library(dplyr)
-# library(geobr)
-# library(ggplot2)
-# library(ggspatial)
-# library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
 plot_brazil_municipality <- function(
     data, #nolint
     col_fill = NULL,
@@ -67,9 +57,7 @@ plot_brazil_municipality <- function(
 
   if (isTRUE(comparable_areas)) {
     geom_data <-
-      geobr::read_comparable_areas(
-        showProgress = FALSE
-      ) |>
+      geobr::read_comparable_areas(showProgress = FALSE) |>
       rutils::shush()
 
     out <-
@@ -91,7 +79,7 @@ plot_brazil_municipality <- function(
   } else {
     geom_data <-
       geobr::read_municipality(
-        year = 2022,
+        year = get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
       rutils::shush()
@@ -137,7 +125,7 @@ plot_brazil_municipality <- function(
         inherit.aes = FALSE,
         ggplot2::aes(geometry = geom),
         data = geobr::read_country(
-          year = year,
+          year = get_closest_geobr_year(year, verbose = FALSE),
           showProgress = FALSE
         ) |>
           rutils::shush(),
@@ -178,23 +166,16 @@ plot_brazil_municipality <- function(
   invisible(plot)
 }
 
-# library(checkmate)
-# library(dplyr)
-# library(geobr)
-# library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-# library(sf)
-# library(tidyr)
-
 plot_brazil_municipality_point <- function(
     data, #nolint
+    year = 2020,
     alpha = 0.7,
     range = c(0, 10),
     ...
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
+  checkmate::assert_int(year)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
   checkmate::assert_integerish(range, len = 2)
 
@@ -221,7 +202,7 @@ plot_brazil_municipality_point <- function(
   ggplot2::ggplot() +
     ggplot2::geom_sf(
       data = geobr::read_state(
-        year = 2022,
+        year = year,
         showProgress = FALSE
       ) |>
         rutils::shush(),
@@ -251,3 +232,4 @@ plot_brazil_municipality_point <- function(
     ) +
     ggplot2::theme(legend.key = ggplot2::element_blank())
 }
+

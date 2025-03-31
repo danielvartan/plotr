@@ -1,6 +1,3 @@
-# library(hms)
-# library(lubritime) # github.com/danielvartan/lubritime
-
 format_as_hm <- function(x, type = NULL) {
   classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
                "POSIXlt", "Interval")
