@@ -11,7 +11,7 @@ plot_brazil_point <- function(
     ...
   ) {
   prettycheck::assert_internet()
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_latitude)
   checkmate::assert_subset(col_latitude, names(data))
   prettycheck::assert_numeric(data[[col_latitude]])

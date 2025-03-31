@@ -9,7 +9,7 @@ plot_box_plot <- function(
     breaks = label,
     ...
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_character(col)
   checkmate::assert_subset(col, names(data))
   checkmate::assert_character(label)

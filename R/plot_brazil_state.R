@@ -21,7 +21,7 @@ plot_brazil_state <- function(
     ...
   ) {
   prettycheck::assert_internet()
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_fill, null.ok = TRUE)
   checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)
   if (!is.null(col_fill)) checkmate::assert_numeric(data[[col_fill]])

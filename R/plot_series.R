@@ -29,7 +29,7 @@ plot_series <- function(
   ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_x)
   checkmate::assert_subset(col_x, names(data))
   checkmate::assert_multi_class(data[[col_x]], col_classes)

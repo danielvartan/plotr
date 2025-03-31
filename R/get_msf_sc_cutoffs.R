@@ -28,7 +28,7 @@ get_msf_sc_cutoffs <- function(
     probs = NULL,
     pretty = TRUE
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_msf_sc)
   checkmate::assert_choice(col_msf_sc, names(data))
   checkmate::assert_numeric(probs, null.ok = TRUE)

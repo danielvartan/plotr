@@ -5,7 +5,7 @@ plot_ggcorrplot <- function(
     label = TRUE,
     hc_order = TRUE
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_character(cols)
   checkmate::assert_subset(cols, names(data))
   checkmate::assert_flag(na_rm)

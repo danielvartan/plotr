@@ -17,7 +17,7 @@ plot_latitude_series <- function(
   ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_subset(col, names(data))
   checkmate::assert_multi_class(data[[col]], col_classes)

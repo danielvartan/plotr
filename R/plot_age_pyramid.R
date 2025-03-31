@@ -7,7 +7,7 @@ plot_age_pyramid <- function(
     brandr = file.exists(here::here("_brand.yml")),
     ...
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_subset(c("sex", "age"), names(data))
   checkmate::assert_number(interval)
   prettycheck::assert_numeric(breaks, null_ok = TRUE)

@@ -10,7 +10,7 @@ plot_ggally <- function(
     brandr = file.exists(here::here("_brand.yml")),
     ...
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_character(cols)
   checkmate::assert_subset(cols, names(data))
   checkmate::assert_character(labels)

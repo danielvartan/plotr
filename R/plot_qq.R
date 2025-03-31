@@ -9,7 +9,7 @@ plot_qq <- function(
     na_rm = TRUE,
     print = TRUE
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_subset(col, names(data))
   prettycheck::assert_numeric(data[[col]])

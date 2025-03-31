@@ -16,7 +16,7 @@ plot_brazil_municipality <- function(
     ...
   ) {
   prettycheck::assert_internet()
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_fill, null.ok = TRUE)
   checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)
   if (!is.null(col_fill)) prettycheck::assert_numeric(data[[col_fill]])
@@ -180,7 +180,7 @@ plot_brazil_municipality_point <- function(
     range = c(0, 10)
   ) {
   prettycheck::assert_internet()
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_int(year)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
   checkmate::assert_multi_class(breaks, c("numeric", "waiver"))

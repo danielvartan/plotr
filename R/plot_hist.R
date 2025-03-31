@@ -15,7 +15,7 @@ plot_hist <- function(
     y_label = ifelse(stat == "count", "Frequency", "Density"),
     print = TRUE
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_choice(col, names(data))
   prettycheck::assert_numeric(data[[col]])

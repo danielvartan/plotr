@@ -29,7 +29,7 @@ plot_world_countries <- function(
     quiet = FALSE,
     ...
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_subset("country", names(data))
   checkmate::assert_string(col_fill, null.ok = TRUE)
   checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)

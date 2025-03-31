@@ -11,7 +11,7 @@ animate_plot_brazil_municipality <- function( #nolint
     text_size = 20,
     ...
 ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col_group, null.ok = TRUE)
   checkmate::assert_choice(col_group, names(data), null.ok = TRUE)
   checkmate::assert_string(group_label)

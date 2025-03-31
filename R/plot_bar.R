@@ -8,7 +8,7 @@ plot_bar <- function(
   ) {
   col_class_options <- c("character", "factor")
 
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_choice(col, names(data))
   checkmate::assert_multi_class(data[[col]], col_class_options)

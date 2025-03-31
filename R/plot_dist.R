@@ -7,7 +7,7 @@ plot_dist <- function(
     na_rm = TRUE,
     print = TRUE
   ) {
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_choice(col, names(data))
   checkmate::assert_number(bins, lower = 1)

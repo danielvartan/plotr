@@ -47,7 +47,7 @@ plot_chronotype <- function(
     "qual", "qualitative"
   )
 
-  checkmate::assert_tibble(data)
+  checkmate::assert_data_frame(data)
   checkmate::assert_choice(col_msf_sc, names(data))
   checkmate::assert_number(col_width, lower = 0)
   checkmate::assert_number(col_border, lower = 0)
