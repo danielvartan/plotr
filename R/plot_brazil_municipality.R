@@ -105,12 +105,18 @@ plot_brazil_municipality <- function(
   }
 
   if (isTRUE(point)) {
+    if ("breaks" %in% names(list(...))) {
+      breaks <- list(...)[["breaks"]]
+    } else {
+      breaks <- ggplot2::waiver()
+    }
+
     plot <-
       out |>
       plot_brazil_municipality_point(
         alpha = alpha,
+        breaks = breaks,
         range = range,
-        ...
       )
   } else {
     plot <-
@@ -159,7 +165,7 @@ plot_brazil_municipality <- function(
       color = NULL,
       size = NULL
     ) +
-    color_scale()
+    color_scale
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
 
@@ -170,13 +176,14 @@ plot_brazil_municipality_point <- function(
     data, #nolint
     year = 2020,
     alpha = 0.7,
-    range = c(0, 10),
-    ...
+    breaks = ggplot2::waiver(),
+    range = c(0, 10)
   ) {
   prettycheck::assert_internet()
   checkmate::assert_tibble(data)
   checkmate::assert_int(year)
   checkmate::assert_number(alpha, lower = 0, upper = 1)
+  checkmate::assert_multi_class(breaks, c("numeric", "waiver"))
   checkmate::assert_integerish(range, len = 2)
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
@@ -228,7 +235,7 @@ plot_brazil_municipality_point <- function(
     ) +
     ggplot2::scale_size_continuous(
       range = range,
-      ...
+      breaks = breaks
     ) +
     ggplot2::theme(legend.key = ggplot2::element_blank())
 }

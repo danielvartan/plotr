@@ -46,7 +46,7 @@ plot_age_pyramid <- function(
       split = "sex",
       na.rm = na_rm
     ) +
-    color_scale() +
+    color_scale +
     ggplot2::labs(
       x = "Frequency",
       y = "Age group",

@@ -69,7 +69,7 @@ plot_chronotype <- function(
   # nolint end
 
   if (isTRUE(brandr)) {
-    color_scale <- brandr::scale_fill_brand_d(.color_type = color_type, ...)
+    color_scale <- brandr::scale_fill_brand_d(color_type = color_type, ...)
   } else {
     color_scale <- ggplot2::scale_fill_discrete(...)
   }
@@ -182,7 +182,7 @@ plot_chronotype <- function(
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
     ggplot2::scale_y_discrete(labels = \(x) skip_label(x, type = "even")) +
-    color_scale() +
+    color_scale +
     ggplot2::labs(
       x = "Frequency (%)",
       y = y_label,

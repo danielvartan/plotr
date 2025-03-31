@@ -74,8 +74,8 @@ plot_ggally <- function(
         columnLabels = labels,
         ...
       ) +
-      color_scale() +
-      fill_scale()
+      color_scale +
+      fill_scale
   }
 
   plot <-

@@ -105,7 +105,7 @@ plot_brazil_point <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    color_scale() +
+    color_scale +
     ggplot2::labs(
       x = NULL,
       y = NULL

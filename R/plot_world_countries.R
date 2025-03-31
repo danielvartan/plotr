@@ -96,7 +96,7 @@ plot_world_countries <- function(
 
   plot <-
     plot +
-    color_scale() +
+    color_scale +
     ggplot2::labs(
       x = NULL,
       y = NULL,

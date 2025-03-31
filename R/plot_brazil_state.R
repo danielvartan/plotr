@@ -96,14 +96,7 @@ plot_brazil_state <- function(
       y = NULL,
       fill = NULL
     ) +
-    color_scale()
-
-  # if (isFALSE(binned)) {
-  #   plot <-
-  #     plot + ggplot2::theme(
-  #       legend.ticks = ggplot2::element_line(color = "white")
-  #     )
-  # }
+    color_scale
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
 

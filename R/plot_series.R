@@ -172,7 +172,7 @@ plot_series <- function(
       size = point_size
     ) +
     ggplot2::scale_x_discrete(breaks = fix_label_decimals) +
-    color_scale() +
+    color_scale +
     ggplot2::labs(
       x = x_label,
       y = y_label,
