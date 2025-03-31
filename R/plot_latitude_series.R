@@ -57,7 +57,7 @@ plot_latitude_series <- function(
     dplyr::filter(dplyr::between(latitude, -34, 3)) |>
     dplyr::mutate(
       latitude = ggplot2::cut_width(latitude, group_width),
-      latitude = rutils::cut_interval_mean(latitude, names = TRUE)
+      latitude = cut_interval_mean(latitude, names = TRUE)
     ) |>
     dplyr::mutate(
       dplyr::across(
@@ -117,7 +117,7 @@ plot_latitude_series <- function(
       )
   }
 
-  if (isTRUE(print)) print(plot) |> rutils::shush()
+  if (isTRUE(print)) print(plot) |> shush()
 
   invisible(plot)
 }

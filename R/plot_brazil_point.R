@@ -42,7 +42,7 @@ plot_brazil_point <- function(
       year = get_closest_geobr_year(year),
       showProgress = FALSE
     ) |>
-    rutils::shush()
+    shush()
 
   plot <-
     data |>
@@ -114,7 +114,7 @@ plot_brazil_point <- function(
       color = ggplot2::guide_legend(override.aes = list(size = 5))
     )
 
-  if (isTRUE(print)) print(plot) |> rutils::shush()
+  if (isTRUE(print)) print(plot) |> shush()
 
   invisible(plot)
 }

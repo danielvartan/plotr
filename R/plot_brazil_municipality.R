@@ -58,7 +58,7 @@ plot_brazil_municipality <- function(
   if (isTRUE(comparable_areas)) {
     geom_data <-
       geobr::read_comparable_areas(showProgress = FALSE) |>
-      rutils::shush()
+      shush()
 
     out <-
       data |>
@@ -82,7 +82,7 @@ plot_brazil_municipality <- function(
         year = get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
-      rutils::shush()
+      shush()
 
     out <- data
   }
@@ -134,7 +134,7 @@ plot_brazil_municipality <- function(
           year = get_closest_geobr_year(year, verbose = FALSE),
           showProgress = FALSE
         ) |>
-          rutils::shush(),
+          shush(),
         color = "black",
         fill = NA,
         linewidth = 0.05
@@ -167,7 +167,7 @@ plot_brazil_municipality <- function(
     ) +
     color_scale
 
-  if (isTRUE(print)) print(plot) |> rutils::shush()
+  if (isTRUE(print)) print(plot) |> shush()
 
   invisible(plot)
 }
@@ -195,7 +195,7 @@ plot_brazil_municipality_point <- function(
     data |>
     sf::st_as_sf() |>
     sf::st_centroid() |>
-    rutils::shush()
+    shush()
 
   data_points <- dplyr::tibble(
     longitude = sf::st_coordinates(data_points)[, 1],
@@ -212,7 +212,7 @@ plot_brazil_municipality_point <- function(
         year = year,
         showProgress = FALSE
       ) |>
-        rutils::shush(),
+        shush(),
       ggplot2::aes(geometry = geom),
       color = "gray75",
       linewidth = 0.1,
@@ -239,4 +239,3 @@ plot_brazil_municipality_point <- function(
     ) +
     ggplot2::theme(legend.key = ggplot2::element_blank())
 }
-

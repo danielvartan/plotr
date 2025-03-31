@@ -62,7 +62,7 @@ plot_brazil_state <- function(
         year = get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
-        rutils::shush(),
+        shush(),
       by = "code_state"
     ) |>
     ggplot2::ggplot() +
@@ -98,7 +98,7 @@ plot_brazil_state <- function(
     ) +
     color_scale
 
-  if (isTRUE(print)) print(plot) |> rutils::shush()
+  if (isTRUE(print)) print(plot) |> shush()
 
   invisible(plot)
 }

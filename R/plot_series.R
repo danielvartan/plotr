@@ -103,7 +103,7 @@ plot_series <- function(
           `levels<-`(
             !!as.symbol(col_x),
             levels(!!as.symbol(col_x)) |>
-              rutils::cut_interval_mean(round = TRUE) |>
+              cut_interval_mean(round = TRUE) |>
               change_sign(change_sign)
           ) |>
           forcats::fct_rev()
@@ -116,7 +116,7 @@ plot_series <- function(
           `levels<-`(
             !!as.symbol(col_x),
             levels(!!as.symbol(col_x)) |>
-              rutils::cut_interval_mean(round = TRUE) |>
+              cut_interval_mean(round = TRUE) |>
               change_sign(change_sign)
           )
       )
@@ -137,21 +137,21 @@ plot_series <- function(
   data_by_col_x <-
     data |>
     dplyr::summarize(
-      std_error = rutils::std_error(!!as.symbol(col_y)),
+      std_error = std_error(!!as.symbol(col_y)),
       !!as.symbol(col_y) := mean(!!as.symbol(col_y), na.rm = TRUE),
       .by = !!as.symbol(col_x)
     ) |>
-    rutils::shush() |>
+    shush() |>
     tidyr::drop_na()
 
   data_by_col_x_and_col_group <-
     data |>
     dplyr::summarize(
-      std_error = rutils::std_error(!!as.symbol(col_y)),
+      std_error = std_error(!!as.symbol(col_y)),
       !!as.symbol(col_y) := mean(!!as.symbol(col_y), na.rm = TRUE),
       .by = c(!!as.symbol(col_x), !!as.symbol(col_group))
     ) |>
-    rutils::shush() |>
+    shush() |>
     tidyr::drop_na()
 
   plot <-

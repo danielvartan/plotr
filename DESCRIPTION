@@ -20,7 +20,7 @@ Depends:
     R (>= 4.3)
 Imports:
     apyramid (>= 0.1.3),
-    brandr,
+    brandr (>= 0.1.0),
     checkmate (>= 2.3.2),
     cli (>= 3.6.3),
     dplyr (>= 1.1.4),
@@ -46,7 +46,6 @@ Imports:
     purrr (>= 1.0.2),
     ragg (>= 1.3.3),
     rlang (>= 1.1.4),
-    rutils,
     sf (>= 1.0.19),
     stats (>= 4.3),
     stringr (>= 1.5.1),
@@ -59,11 +58,9 @@ Suggests:
     spelling (>= 2.3.1),
     testthat (>= 3.2.2)
 Remotes:
-    github::danielvartan/brandr,
     github::danielvartan/lubritime,
     github::danielvartan/orbis,
-    github::danielvartan/prettycheck,
-    github::danielvartan/rutils
+    github::danielvartan/prettycheck
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US

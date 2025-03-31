@@ -24,7 +24,7 @@
 #   ) |>
 #   dplyr::pull(interval) |>
 #   levels() |>
-#   rutils::cut_interval_mean() |>
+#   cut_interval_mean() |>
 #   as.POSIXct(tz = "UTC")
 
 # Move to `mctq` package

@@ -52,7 +52,7 @@ plot_age_pyramid <- function(
       y = "Age group",
       fill = "Sex"
     ) |>
-    rutils::shush()
+    shush()
 
   if (isTRUE(print)) print(plot)
 

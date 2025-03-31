@@ -7,7 +7,7 @@
 #     interval = cut( # Bins by quantiles.
 #       !!as.symbol(col_msf_sc),
 #       breaks =
-#         rutils::drop_na(!!as.symbol(col_msf_sc)) |>
+#         drop_na(!!as.symbol(col_msf_sc)) |>
 #         lubritime::link_to_timeline() |>
 #         as.numeric() |>
 #         stats::quantile(probs),
@@ -17,7 +17,7 @@
 #   ) |>
 #   dplyr::pull(interval) |>
 #   unique() |>
-#   rutils::cut_interval_mean() |>
+#   cut_interval_mean() |>
 #   as.POSIXct(tz = "UTC") |>
 #   sort()
 
@@ -70,7 +70,7 @@ get_msf_sc_cutoffs <- function(
       interval = cut(
         !!as.symbol(col_msf_sc),
         breaks =
-          rutils::drop_na(!!as.symbol(col_msf_sc)) |>
+          drop_na(!!as.symbol(col_msf_sc)) |>
           stats::quantile(probs),
         dig.lab = 10,
         include.lowest = TRUE

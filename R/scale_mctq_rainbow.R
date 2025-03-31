@@ -80,7 +80,7 @@ scale_color_mctq_rainbow_d <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 scale_color_mctq_rainbow_c <- function(
@@ -93,7 +93,7 @@ scale_color_mctq_rainbow_c <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 scale_color_mctq_rainbow_b <- function(
@@ -106,7 +106,7 @@ scale_color_mctq_rainbow_b <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 scale_colour_mctq_rainbow_d <- scale_color_mctq_rainbow_d
@@ -123,7 +123,7 @@ scale_fill_mctq_rainbow_d <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 scale_fill_mctq_rainbow_c <- function(
@@ -136,7 +136,7 @@ scale_fill_mctq_rainbow_c <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 scale_fill_mctq_rainbow_b <- function(
@@ -149,7 +149,7 @@ scale_fill_mctq_rainbow_b <- function(
     reverse = FALSE,
     ...
   ) {
-  do.call("scale_mctq_rainbow", rutils::grab_fun_par())
+  do.call("scale_mctq_rainbow", grab_fun_par())
 }
 
 # color_mctq_rainbow_sequential(10) |> rutils::vector_to_c()
