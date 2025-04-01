@@ -76,6 +76,7 @@
     "stringr",
     "tcltk",
     "testthat",
+    "tibble",
     "tidyr",
     "uneval",
     "urlchecker",

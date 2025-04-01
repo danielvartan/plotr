@@ -23,16 +23,14 @@ plot_homoscedasticity <- function(
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
-  .sd_resid <- NULL
+  .sd_resid <- value <- NULL
   # nolint end
 
   model <- model |> extract_fit_engine()
   data <- data |> dplyr::select(dplyr::all_of(col))
 
   plot <-
-    model |>
-    stats::predict(data) |>
-    dplyr::mutate(
+    dplyr::tibble(
       .sd_resid =
         model |> #nolint
         stats::rstandard() |>
