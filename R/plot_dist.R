@@ -5,6 +5,7 @@ plot_dist <- function(
     stat = "density",
     density_line = TRUE,
     na_rm = TRUE,
+    x_label = col,
     print = TRUE
   ) {
   checkmate::assert_data_frame(data)
@@ -14,6 +15,7 @@ plot_dist <- function(
   checkmate::assert_choice(stat, c("count", "density"))
   checkmate::assert_flag(density_line)
   checkmate::assert_flag(na_rm)
+  prettycheck::assert_ggplot_label(x_label)
   checkmate::assert_flag(print)
 
   hist_plot <-
@@ -24,6 +26,7 @@ plot_dist <- function(
       stat = stat,
       density_line = density_line,
       na_rm = na_rm,
+      x_label = x_label,
       print = FALSE
     )
 

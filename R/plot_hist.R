@@ -1,7 +1,6 @@
 plot_hist <- function(
     data, #nolint
     col,
-    name = col,
     bins = 30,
     stat = "density",
     density_line = TRUE,
@@ -11,15 +10,14 @@ plot_hist <- function(
       "red"
     ),
     na_rm = TRUE,
-    x_label = name,
+    x_label = col,
     y_label = ifelse(stat == "count", "Frequency", "Density"),
     print = TRUE
   ) {
   checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_choice(col, names(data))
-  prettycheck::assert_numeric(data[[col]])
-  checkmate::assert_string(name)
+  checkmate::assert_numeric(data[[col]])
   checkmate::assert_number(bins, lower = 1)
   checkmate::assert_choice(stat, c("count", "density"))
   checkmate::assert_flag(density_line)

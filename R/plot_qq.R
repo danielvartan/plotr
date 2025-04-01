@@ -12,7 +12,7 @@ plot_qq <- function(
   checkmate::assert_data_frame(data)
   checkmate::assert_string(col)
   checkmate::assert_subset(col, names(data))
-  prettycheck::assert_numeric(data[[col]])
+  checkmate::assert_numeric(data[[col]])
   prettycheck::assert_color(line_color)
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
