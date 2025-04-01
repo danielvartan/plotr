@@ -76,6 +76,7 @@ references:
     orcid: https://orcid.org/0000-0001-7782-759X
   year: '2025'
   doi: 10.32614/CRAN.package.brandr
+  version: '>= 0.1.0'
 - type: software
   title: checkmate
   abstract: 'checkmate: Fast and Versatile Argument Checks'
@@ -376,7 +377,7 @@ references:
   - type: url
     value: https://ropensci.r-universe.dev/magick
   doi: 10.32614/CRAN.package.magick
-  version: '>= 2.8.5'
+  version: '>= 2.8.6'
 - type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
@@ -431,6 +432,22 @@ references:
     email: danvartan@gmail.com
     orcid: https://orcid.org/0000-0001-7782-759X
   year: '2025'
+- type: software
+  title: parsnip
+  abstract: 'parsnip: A Common API to Modeling and Analysis Functions'
+  notes: Imports
+  url: https://parsnip.tidymodels.org/
+  repository: https://CRAN.R-project.org/package=parsnip
+  authors:
+  - family-names: Kuhn
+    given-names: Max
+    email: max@posit.co
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.parsnip
+  version: '>= 1.3.1'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -495,17 +512,6 @@ references:
   doi: 10.32614/CRAN.package.rlang
   version: '>= 1.1.4'
 - type: software
-  title: rutils
-  abstract: 'rutils: Utility Functions for R'
-  notes: Imports
-  url: https://danielvartan.github.io/rutils/
-  authors:
-  - family-names: Vartanian
-    given-names: Daniel
-    email: danvartan@gmail.com
-    orcid: https://orcid.org/0000-0001-7782-759X
-  year: '2025'
-- type: software
   title: sf
   abstract: 'sf: Simple Features for R'
   notes: Imports
@@ -518,7 +524,7 @@ references:
     orcid: https://orcid.org/0000-0001-8049-7069
   year: '2025'
   doi: 10.32614/CRAN.package.sf
-  version: '>= 1.0.19'
+  version: '>= 1.0.20'
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'

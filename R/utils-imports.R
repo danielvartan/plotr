@@ -41,6 +41,17 @@ drop_na <- function(x) {
 }
 
 # Borrowed from `rutils`: github.com/danielvartan/rutils
+extract_fit_engine <- function(model) {
+  checkmate::assert_multi_class(model, c("lm", "model_fit", "workflow"))
+
+  if (checkmate::test_multi_class(model, c("model_fit", "workflow"))) {
+    model |> parsnip::extract_fit_engine()
+  } else {
+    model
+  }
+}
+
+# Borrowed from `rutils`: github.com/danielvartan/rutils
 grab_fun_par <- function() {
   args_names <- ls(envir = parent.frame(), all.names = TRUE, sorted = FALSE)
 
