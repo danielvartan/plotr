@@ -147,12 +147,12 @@ plot_brazil_municipality <- function(
       location = "br",
       style = "tick",
       width_hint = 0.25,
-      height = unit(0.15, "cm")
+      height = ggplot2::unit(0.15, "cm")
     ) +
     ggspatial::annotation_north_arrow(
       location = "br",
-      height = unit(1, "cm"),
-      width = unit(1, "cm"),
+      height = ggplot2::unit(1, "cm"),
+      width = ggplot2::unit(1, "cm"),
       pad_x = ggplot2::unit(0.1, "cm"),
       pad_y = ggplot2::unit(0.55, "cm"),
       style = ggspatial::north_arrow_fancy_orienteering
