@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-05-01T19:58Z
+last_built: 2025-05-01T20:55Z
 urls:
   reference: https://danielvartan.github.io/plotr/reference
   article: https://danielvartan.github.io/plotr/articles
