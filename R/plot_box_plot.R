@@ -137,7 +137,7 @@ plot_box_plot <- function(
     if (isTRUE(brandr)) {
       plot <- plot + brandr::scale_fill_brand_d(breaks = breaks, ...)
     } else {
-      ggplot2::scale_fill_discrete(...)
+      plot <- plot + ggplot2::scale_fill_discrete(...)
     }
   }
 

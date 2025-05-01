@@ -1,3 +1,30 @@
+# @example
+# \dontrun{
+#   library(dplyr)
+#   library(janitor)
+#   library(sidrar)
+#
+#   # 2020 Brazil's GDP by municipality
+#   "/t/5938/n6/all/v/37/p/2020/d/v37%200" %>%
+#      sidrar::get_sidra(api = "/t/5938/n6/all/v/37/p/2020/d/v37%200") |>
+#      dplyr::as_tibble() |>
+#      janitor::clean_names() |>
+#      dplyr::transmute(
+#        n = valor,
+#        municipality_code = as.integer(municipio_codigo)
+#      ) |>
+#      plot_brazil_municipality(
+#        col_fill = "n",
+#        col_code = "municipality_code",
+#        year = 2020,
+#        comparable_areas = TRUE,
+#        type = "viridis",
+#        transform = "log10"
+#      )
+# }
+#
+# @noRd
+
 plot_brazil_municipality <- function(
     data, #nolint
     col_fill = NULL,
@@ -48,11 +75,10 @@ plot_brazil_municipality <- function(
       ...
     )
   } else {
-    color_scale <- ifelse(
-      isTRUE(point),
-      ggplot2::scale_color_binned(na.value = na.value, ...),
-      ggplot2::scale_fill_binned(na.value = na.value, ...)
-    )
+    if (isTRUE(point)) {
+      color_scale <- ggplot2::scale_color_binned(na.value = na.value, ...)
+    } else
+      color_scale <- ggplot2::scale_fill_binned(na.value = na.value, ...)
   }
 
   if (isTRUE(comparable_areas)) {
