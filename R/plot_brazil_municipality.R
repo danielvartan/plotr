@@ -64,7 +64,7 @@ plot_brazil_municipality <- function(
 
   # R CMD Check variable bindings fix (See: https://bit.ly/3z24hbU)
   # nolint start
-  . <- geom <- n <- unit <- NULL
+  . <- code_muni <- geom <- n <- unit <- NULL
   # nolint end
 
   if (isTRUE(brandr)) {
@@ -109,6 +109,17 @@ plot_brazil_municipality <- function(
         showProgress = FALSE
       ) |>
       shush()
+
+    if (nchar(data[[col_code]][1]) == 6) {
+      geom_data <-
+        geom_data |>
+        dplyr::mutate(
+          code_muni =
+            code_muni |> #nolint
+            stringr::str_sub(end = -2) |>
+            as.numeric()
+        )
+    }
 
     out <- data
   }
