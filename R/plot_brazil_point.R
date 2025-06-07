@@ -39,7 +39,7 @@ plot_brazil_point <- function(
 
   brazil_state_data <-
     geobr::read_state(
-      year = get_closest_geobr_year(year),
+      year = orbis::get_closest_geobr_year(year),
       showProgress = FALSE
     ) |>
     shush()

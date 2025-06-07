@@ -59,7 +59,7 @@ plot_brazil_state <- function(
     ) |>
     dplyr::right_join(
       geobr::read_state(
-        year = get_closest_geobr_year(year),
+        year = orbis::get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
         shush(),

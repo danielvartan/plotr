@@ -105,7 +105,7 @@ plot_brazil_municipality <- function(
   } else {
     geom_data <-
       geobr::read_municipality(
-        year = get_closest_geobr_year(year),
+        year = orbis::get_closest_geobr_year(year),
         showProgress = FALSE
       ) |>
       shush()
@@ -168,7 +168,7 @@ plot_brazil_municipality <- function(
         inherit.aes = FALSE,
         ggplot2::aes(geometry = geom),
         data = geobr::read_country(
-          year = get_closest_geobr_year(year, verbose = FALSE),
+          year = orbis::get_closest_geobr_year(year, verbose = FALSE),
           showProgress = FALSE
         ) |>
           shush(),
