@@ -4,6 +4,11 @@ plot_dist <- function(
     bins = 30,
     stat = "density",
     density_line = TRUE,
+    line_color = ifelse(
+      file.exists(here::here("_brand.yml")),
+      brandr::get_brand_color("primary"),
+      "red"
+    ),
     na_rm = TRUE,
     x_label = col,
     print = TRUE
@@ -14,6 +19,7 @@ plot_dist <- function(
   checkmate::assert_number(bins, lower = 1)
   checkmate::assert_choice(stat, c("count", "density"))
   checkmate::assert_flag(density_line)
+  prettycheck::assert_color(line_color)
   checkmate::assert_flag(na_rm)
   prettycheck::assert_ggplot_label(x_label)
   checkmate::assert_flag(print)
@@ -25,6 +31,7 @@ plot_dist <- function(
       bins = bins,
       stat = stat,
       density_line = density_line,
+      density_line_color = line_color,
       na_rm = na_rm,
       x_label = x_label,
       print = FALSE
@@ -34,6 +41,7 @@ plot_dist <- function(
     data |>
     plot_qq(
       col = col,
+      line_color = line_color,
       na_rm = na_rm,
       print = FALSE
     )
