@@ -105,7 +105,7 @@ plot_brazil_municipality <- function(
   } else {
     geom_data <-
       geobr::read_municipality(
-        year = orbis::get_closest_geobr_year(year),
+        year = orbis::closest_geobr_year(year),
         showProgress = FALSE
       ) |>
       shush()
@@ -126,7 +126,7 @@ plot_brazil_municipality <- function(
 
   out <-
     out |>
-    orbis::get_map_fill_data(
+    orbis::map_fill_data(
       col_fill = col_fill,
       col_code = col_code,
       name_col_ref = ifelse(isTRUE(comparable_areas), "code_amc", "code_muni"),
@@ -168,7 +168,7 @@ plot_brazil_municipality <- function(
         inherit.aes = FALSE,
         ggplot2::aes(geometry = geom),
         data = geobr::read_country(
-          year = orbis::get_closest_geobr_year(year, verbose = FALSE),
+          year = orbis::closest_geobr_year(year, verbose = FALSE),
           showProgress = FALSE
         ) |>
           shush(),

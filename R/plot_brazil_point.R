@@ -39,14 +39,14 @@ plot_brazil_point <- function(
 
   brazil_state_data <-
     geobr::read_state(
-      year = orbis::get_closest_geobr_year(year),
+      year = orbis::closest_geobr_year(year),
       showProgress = FALSE
     ) |>
     shush()
 
   plot <-
     data |>
-    orbis::filter_points_on_land(dplyr::pull(brazil_state_data, geom)) |>
+    orbis::filter_points(dplyr::pull(brazil_state_data, geom)) |>
     dplyr::select(
       dplyr::all_of(c(col_latitude, col_longitude, col_group))
     ) |>

@@ -64,7 +64,7 @@ plot_world_countries <- function(
         .default = !!as.symbol(col_country)
       )
     ) |>
-    orbis::get_map_fill_data(
+    orbis::map_fill_data(
       col_fill = col_fill,
       col_code = col_country,
       name_col_ref = "ID",

@@ -51,7 +51,7 @@ plot_brazil_state <- function(
 
   plot <-
     data |>
-    orbis::get_map_fill_data(
+    orbis::map_fill_data(
       col_fill = col_fill,
       col_code = col_code,
       name_col_ref = "code_state",
@@ -59,7 +59,7 @@ plot_brazil_state <- function(
     ) |>
     dplyr::right_join(
       geobr::read_state(
-        year = orbis::get_closest_geobr_year(year),
+        year = orbis::closest_geobr_year(year),
         showProgress = FALSE
       ) |>
         shush(),
